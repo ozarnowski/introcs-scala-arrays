@@ -1,4 +1,5 @@
 import scala.math.min
+import scala.io.Source
 
 object arrays {
 
@@ -14,7 +15,9 @@ object arrays {
   }
 
   def getIntsAsString(label: String, delimiter: String, a: Array[Int]): String = {
-    ""
+     var x = a.mkString(delimiter)
+    (label + x) 
+      
   }
 
   // Read the contents of filename into a.
@@ -22,7 +25,12 @@ object arrays {
   // Each line should be converted to Int (if possible) or 0 otherwise.
 
   def readFileIntoArray(filename: String, a: Array[Int]) {
-
+var x = 0
+      for (line <- Source.fromFile(filename).getLines())
+{  if (arraySize(a)!= x) { 
+    a(x) = line.toInt
+    x+=1}}
+      
   }
 
   //Minimum chunk
@@ -31,15 +39,17 @@ object arrays {
   ///  Assume a contains at least one value.
 
   def minimum(a: Array[Int]): Int = {
-    require(a.length > 0) // if you delete this, the tests will not pass!
-
-    return 0; // so stub compiles
+    require(a.length > 0) 
+    val x = a.min
+    x; 
   }
   //CountEven chunk
   ///  Return the number of even values in a.
   ///  Example: If a contains {-4, 7, 6, 12, 9}, return 3. 
   def countEven(a: Array[Int]): Int = {
-    return 0; // so stub compiles
+    
+      val x = a.count(_%2 == 0)
+      x;   
   }
 
   //CountEven chunk
@@ -47,7 +57,8 @@ object arrays {
   ///  Example: If a contains {-4, 7, 6, 12, 9}, return 3. 
 
   def countOdd(a: Array[Int]): Int = {
-    return 0; // so stub compiles
+    val x = a.count(_%2 != 0)
+    x;
   }
 
   //PairwiseAdd chunk
@@ -56,8 +67,13 @@ object arrays {
   ///  Example: If a contains {2, 4, 6} and b contains {7, -1, 8}
   ///  then at the end sum should contain {9, 3, 14}. 
 
-  def pairwiseAdd(a: Array[Int], b: Array[Int], c: Array[Int]) {
-
+  def pairwiseAdd(a: Array[Int], b: Array[Int], c: Array[Int])= {
+   
+      for (i <- 0 until (min(a.length, b.length)))
+      c(i) = (a(i) + b(i))
+        c
+      
+      
   }
   //NewPairwiseAdd chunk
   ///  Return a new array whose elements are the sums of the
@@ -67,12 +83,12 @@ object arrays {
   ///  then return an array containing {5, 3, 11}. 
   def newPairwiseAdd(a: Array[Int], b: Array[Int]): Array[Int] = {
     val addSize = min(a.length, b.length)
-    val newArray = Array.fill(addSize)(0)
+    var newArray = Array.fill(addSize)(0)
 
-    // your code here
-
-    newArray
-  }
+   for (i <- 0 until (min(a.length, b.length)))
+      newArray(i) = (a(i) + b(i))
+    newArray 
+   }
   //IsAscending chunk
   ///  Return true if the numbers are sorted in increasing order,
   ///  so that in each pair of consecutive entries,
@@ -81,9 +97,13 @@ object arrays {
   ///  two elements is ascending.
   ///  Examples: If a contains {2, 5, 5, 8}, return true;
   ///  if a contains {2, 5, 3, 8}, return false. 
-  def isAscending(a: Array[Int]): Boolean = {
-    false
-  }
+  def isAscending(a: Array[Int]):Boolean = {
+     var increasing = true
+     for (i <- 0 to (a.length-2))
+          if (a(i) > a(i+1))
+            increasing = false
+     increasing
+  } 
 
   /*
      getAscendingRun(a, position) returns the position where a 
@@ -106,10 +126,18 @@ object arrays {
 
   */
 
-  def getAscendingRun(a: Array[Int], position: Int): Int = {
+ def getAscendingRun(a: Array[Int], position: Int): Int = {
     require(position < a.length)
-
-    -1 // replace with your code, which should return Int
+     // USE A WHILE LOOP
+   var answer = a.length
+     var iffound = "not found"
+     for (i <- position to (a.length-2)){
+         while (iffound != "found"){
+          if (a(i) > a(i+1)){
+           answer = (i + 1)
+              iffound = "found"}}}
+          
+    answer
   }
 
   /*
