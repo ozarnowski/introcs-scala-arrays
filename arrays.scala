@@ -1,6 +1,8 @@
 import scala.math.min
 import scala.io.Source
 
+
+
 object arrays {
 
   /*
@@ -128,18 +130,11 @@ var x = 0
 
  def getAscendingRun(a: Array[Int], position: Int): Int = {
     require(position < a.length)
-     // USE A WHILE LOOP
-   var answer = a.length
-     var iffound = "not found"
-     for (i <- position to (a.length-2)){
-         while (iffound != "found"){
-          if (a(i) > a(i+1)){
-           answer = (i + 1)
-              iffound = "found"}}}
-          
-    answer
+   0
+     
+  
   }
-
+ 
   /*
     This should use teh getAscendingRun() function to produce a string
     of runs. The runs should be separated by commas with a vertical bar
